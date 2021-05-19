@@ -21,9 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.compse_scaffold.ui.theme.CompseScaffoldTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,10 +45,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting() {
     Column {
-        Scaffold(topBar = { topBar() }, bottomBar = {ButtomBar()}) {
+        Scaffold(topBar = { topBar() }, bottomBar = {ButtomBar()}, drawerContent = { Drawer()}) {
             LazyColumn {
                 items((1..20).toList()){
-                    Text("Some Item", modifier = Modifier.padding(4.dp).align(Alignment.CenterHorizontally))
+                    Text("Some Item", modifier = Modifier.padding(4.dp).align(Alignment.CenterHorizontally).padding(8.dp), style = TextStyle(
+
+                        fontSize = 20.sp,
+                        fontFamily = FontFamily.SansSerif
+
+                    ))
                     Divider(color = Color(0xFF606565), thickness = 1.dp)
                 }
             }
@@ -57,7 +64,12 @@ fun Greeting() {
 @Composable
 fun Drawer() {
     Column(modifier = Modifier.padding(10.dp).fillMaxWidth().fillMaxHeight().background(Color(0xFFB3E0E1))){
-
+        LazyColumn {
+            items((1..20).toList()){
+                Text("Some Item", modifier = Modifier.padding(4.dp).align(Alignment.CenterHorizontally))
+                Divider(color = Color(0xFF606565), thickness = 1.dp)
+            }
+        }
     }
 }
 
